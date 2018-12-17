@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="card-header">
-      <h5>{{ object.author }}</h5>
+      <a href="{% url 'user-posts' object.author.username %}"><h5>{{ object.author }}</h5></a>
       <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
     </div>
     {% if object.author == user %}
