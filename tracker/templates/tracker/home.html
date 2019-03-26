@@ -1,22 +1,24 @@
 {% extends "tracker/base.html" %}
-
 {% block content %}
+    <h4 class="bugs mt-3">Active Bugs / Feature Requests</h4>
     {% for post in posts %}
-        <div class="card border-secondary mb-3 mt-3">
-          <div class="row">
-            <div class="col-lg-1">
-              <img src="{{ post.author.profile.image.url }}" class="img-fluid" alt="author-image">
+        <article class="card mb-1 mt-1">
+          <div class="row d-flex align-items-center">
+            <div class="col-lg-8">
+              <a href="{% url 'post-detail' post.id %}"><h6 class="card-title ml-2 mt-2">{{ post.title }}</h6></a>
             </div>
-            <div class="col-lg-11">
-              <a href="{% url 'post-detail' post.id %}"><h5 class="card-title green">{{ post.title }}</h5></a>
-              <p class="card-text">{{ post.content }}</p>
+            <div class="col-lg-2">
+              <small class="replies text-muted pr-2">4 replies</small>
+            </div>
+            <div class="col-lg-2">
+              <small class="views text-muted pr-2">12 views</small>
             </div>
           </div>
           <div class="card-header">
-            <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+            <small><a class="mr-2 author" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a></small>
             <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
           </div>
-        </div>
+        </article>
     {% endfor %}
     {% if is_paginated %}
 

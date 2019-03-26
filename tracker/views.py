@@ -6,6 +6,7 @@ from .models import Post
 
 
 def home(request):
+    ''' Render all the bug posts from tracker database'''
     context = {
         'posts': Post.objects.all()
     }

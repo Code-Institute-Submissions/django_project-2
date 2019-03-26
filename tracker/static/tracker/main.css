@@ -1,5 +1,75 @@
-.green {
-  color: #3fde1f;
+:root {
+  --orange: #ef7559;
+  --blue: #0a8cb3;
+}
+
+body {
+  background: url('/media/bg5.jpg')no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* font-family: 'Lato', sans-serif; */
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+  background: rgba(188, 214, 140, 0.4);
+  z-index: -5;
+}
+
+.navbar {
+  background: rgba(179, 167, 83, 0.62);
+}
+
+.bugs {
+  color: #b2b37ad4;
+}
+
+.card {
+  opacity: 0.8;
+  border-radius: 0;
+}
+
+.card a {
+  color: var(--orange);
+}
+
+.card a:hover {
+  color: #dd3e19;
+  text-decoration: none;
+}
+
+.card-header {
+    padding: .5rem .75rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.author {
+  display: inline-block;
+  min-width: 3rem;
+  font-family: 'Lato', sans-serif;
+}
+
+.card a.author{
+  color: var(--blue);
+}
+
+.card a.author:hover {
+  color: #5c7786;
+}
+
+.replies {
+  border-right: 2px solid var(--orange);
+}
+
+.views {
+  border-right: 2px solid var(--orange);
 }
 
 .account-img {
@@ -9,23 +79,16 @@
   margin-bottom: 16px;
 }
 
+.audiowide {
+  font-family: 'Audiowide', cursive;
+}
 
 
 /* forms */
 form {
-  width: 60%;
-  margin: 60px auto;
-  background: #efefef;
-  padding: 60px 120px 80px 120px;
-  text-align: center;
-  -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
-  box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  /* background: #efefef;   */
 }
-label {
-  display: block;
-  position: relative;
-  margin: 40px 0px;
-}
+
 input {
   width: 100%;
   padding: 10px;
@@ -71,22 +134,6 @@ input:focus + .line-box .line {
   top: -3em;
 }
 
-button {
-  display: inline-block;
-  padding: 12px 24px;
-  background: rgb(220,220,220);
-  font-weight: bold;
-  color: rgb(120,120,120);
-  border: none;
-  outline: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: ease .3s;
-}
 
-button:hover {
-  background: #8BC34A;
-  color: #ffffff;
-}
 
 /* endforms */
