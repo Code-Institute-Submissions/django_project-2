@@ -5,11 +5,11 @@ from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
-    '''Inherit from UserCreationForm and add an email field '''
+    """Inherit from UserCreationForm and add an email field """
     email = forms.EmailField()
 
     class Meta:
-        '''Creates instance of User if valid form - form.save()'''
+        """Creates instance of User if valid form - form.save()"""
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 

@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 
-
 class Post(models.Model):
+    """ Tracker Post model"""
     title = models.CharField(max_length=100)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
@@ -15,4 +15,5 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
+        """ Send post path string to view"""
         return reverse('post-detail', kwargs={'pk': self.pk})
