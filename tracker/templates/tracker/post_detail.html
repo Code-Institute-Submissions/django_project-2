@@ -1,28 +1,44 @@
 {% extends "tracker/base.html" %}
 {% block content %}
-  <div class="card border-secondary mb-3 mt-3">
+  <article class="post-detail card mt-3 mb-3">
     <div class="row">
-      <div class="col-lg-1">
-        <img src="{{ object.author.profile.image.url }}" class="img-fluid" alt="author-image">
+      <div class="col-lg-2">
+        <img src="{{ object.author.profile.image.url }}" class="img-fluid" alt="avatar">
+        {% if object.author == user %}
+          <a href="{% url 'post-update' object.id %}"><i class="far fa-edit ml-1 edit-post"></i></a>
+          <a href="{% url 'post-delete' object.id %}"><i class="fas fa-eraser ml-1 rubber"></i></a>
+        {% endif %}
       </div>
-      <div class="col-lg-11">
+      <div class="col-lg-10">
         <h5 class="card-title green">{{ object.title }}</h5>
         <p class="card-text">{{ object.content }}</p>
+        <a href="#"><i class="far fa-comment-dots mr-2"></i></a>
+        <a href="#"><i class="fas fa-thumbs-up mr-2"></i></a>
       </div>
     </div>
-    <div class="card-header">
-      <a href="{% url 'user-posts' object.author.username %}"><h5>{{ object.author }}</h5></a>
-      <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-    </div>
-    <div class="bug-comments">
-      <p>Boom shackalack pimpin' arcu. Donec ante. Funky fresh placerizzle i'm in the shizzle at you son of a bizzle. Shut the shizzle up izzle tortizzle. Cras izzle get down get down izzle mi consectetizzle hizzle. Yippiyo ipsum dolizzle sizzle amizzle, phat break it down away. Curabitur elit arcu, things nizzle, hizzle yo, mollis mah nizzle, fo shizzle.</p>
-    </div>
-    {% if object.author == user %}
-      <div class="">
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card-header mb-1">
+          <small><a class="mr-2 author" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a></small>
+          <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+        </div>
       </div>
-    {% endif %}
-
-  </div>
+    </div>
+    <div class="row user-replies mb-2">
+      <div class="col-lg-12">
+        <p>Boom shackalack pimpin' arcu. Donec ante. Funky fresh placerizzle i'm in the shizzle at you son of a bizzle. Shut the shizzle up izzle tortizzle. Cras izzle get down get down izzle mi consectetizzle hizzle. Yippiyo ipsum dolizzle sizzle amizzle, phat break it down away. Curabitur elit arcu, things nizzle, hizzle yo, mollis mah nizzle, fo shizzle.</p>
+        <small><a class="mr-2 author" href="">Joe Bloggs</a></small>
+        <small class="text-muted">12/04/18</small>
+        <hr>
+      </div>
+    </div>
+    <div class="row user-replies mb-2">
+      <div class="col-lg-12">
+        <p>Boom shackalack pimpin' arcu. Donec ante. Funky fresh placerizzle i'm in the shizzle at you son of a bizzle. Shut the shizzle up izzle tortizzle. Cras izzle get down get down izzle mi consectetizzle hizzle. Yippiyo ipsum dolizzle sizzle amizzle, phat break it down away. Curabitur elit arcu, things nizzle, hizzle yo, mollis mah nizzle, fo shizzle.</p>
+        <small><a class="mr-2 author" href="">Joe Bloggs</a></small>
+        <small class="text-muted">12/04/18</small>
+        <hr>
+      </div>
+    </div>
+  </article>
 {% endblock content %}

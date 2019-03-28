@@ -10,6 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{% static 'tracker/main.css' %}">
@@ -23,14 +25,14 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark static-top">
       <div class="container">
-        <a class="navbar-brand audiowide" href="{% url 'tracker-home' %}">Bugtracker</a>
+        <a class="navbar-brand audiowide" href="{% url 'tracker-home' %}">Unicorn</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'tracker-home' %}">Home<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'tracker-home' %}">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'tracker-about' %}">About</a>
@@ -71,8 +73,31 @@
         {% block content %}{% endblock %}
       </div>
     </section>
-
   </main>
+
+  <section id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+          <ul class="list-unstyled list-inline social text-center">
+            <li class="list-inline-item"><a href=""><i class="fas fa-home"></i></a></li>
+            <li class="list-inline-item"><a href=""><i class="fab fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href=""><i class="fab fa-github"></i></a></li>
+            <li class="list-inline-item"><a href="" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
+            <li class="list-inline-item"><a href="" target="_blank"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+        </div>
+        </hr>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+          <p><u><a href="https://bokchoi.herokuapp.com/">Unicorn</a></u> is a Django project for Code Institute</p>
+          <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Unicorn</a></p>
+        </div>
+        </hr>
+      </div>
+    </div>
+  </section>
 
 
   <!-- Optional JavaScript -->

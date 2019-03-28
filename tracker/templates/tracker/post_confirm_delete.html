@@ -1,12 +1,12 @@
 {% extends "tracker/base.html" %}
 {% block content %}
-    <div class="section register-section">
-      <form method="POST">
-        {% csrf_token %}
-        <h3>Delete Ticket</h3>
-        <h5>Are you sure you want to delete ticket '{{ object.title }}'</h5>
-        <button type="submit">Delete</button>
-        <a href="{% url 'post-detail' object.id %}" class="btn btn-outline-secondary">Cancel</a>
-      </form>
-    </div>
+  <section class="delete-post mt-3">
+    <form class="shadow" method="POST">
+      {% csrf_token %}
+      <h4>Delete Ticket</h4>
+      <h5>Are you sure you want to delete ticket '{{ object.title }}'</h5>
+      <button class="btn btn-outline-danger" type="submit">Delete</button>
+      <a href="{% url 'post-detail' object.id %}" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+  </section>
 {% endblock content %}
