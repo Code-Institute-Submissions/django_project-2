@@ -1,24 +1,19 @@
 {% extends "tracker/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="section login-section">
-      <form method="POST">
-        {% csrf_token %}
-        <h3>Login</h3>
-        <!-- <label>
-          <p class="label-txt"></p>
-          <input type="text" class="input">
-          <div class="line-box">
-            <div class="line"></div>
-          </div>
-        </label> -->
-        {{ form|crispy }}
-        <button type="submit">Login</button>
-      </form>
-      <div class="border-top pt-3">
+  <section class="login-section mt-3 mb-3">
+    <form class="shadow" method="POST">
+      {% csrf_token %}
+      <h4>Login</h4>
+      {{ form|crispy }}
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Login</button>
+      </div>
+      <div class="border-top">
         <small class="text-muted">
           Need an Account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
         </small>
       </div>
-    </div>
+    </form>
+  </section>
 {% endblock content %}

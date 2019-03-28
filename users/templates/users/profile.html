@@ -1,26 +1,20 @@
 {% extends "tracker/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-  <h3>Profile Info</h3>
+<section class="profile-section mt-3 mb-3">
   <div class="media">
-    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+    <img class="account-img" src="{{ user.profile.image.url }}">
     <div class="media-body">
-      <h4 class="account-heading">{{ user.username }}</h4>
+      <h5 class="account-heading">{{ user.username }}</h5>
       <p class="text-secondary">{{ user.email }}</p>
     </div>
   </div>
-  <form method="POST" enctype="multipart/form-data">
+  <form class="shadow" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <h3>Profile Info</h3>
-    <!-- <label>
-      <p class="label-txt"></p>
-      <input type="text" class="input">
-      <div class="line-box">
-        <div class="line"></div>
-      </div>
-    </label> -->
+    <h4>Profile Info</h4>
     {{ u_form|crispy }}
     {{ p_form|crispy }}
-    <button type="submit">Update</button>
+    <button type="submit" class="btn btn-info">Update</button>
   </form>
+</section>
 {% endblock content %}
