@@ -9,11 +9,15 @@
           <a href="{% url 'post-delete' object.id %}"><i class="fas fa-eraser ml-1 rubber"></i></a>
         {% endif %}
       </div>
-      <div class="col-lg-10">
+      <div class="col-lg-8">
         <h5 class="card-title green">{{ object.title }}</h5>
         <p class="card-text">{{ object.content }}</p>
-        <a href="#"><i class="far fa-comment-dots mr-2"></i></a>
+        <a href="{% url 'comment-create' object.id %}"><i class="far fa-comment-dots mr-2"></i></a>
         <a href="#"><i class="fas fa-thumbs-up mr-2"></i></a>
+      </div>
+      <div class="col-lg-2 post-detail flex">
+        <small class="viewed pl-2 pr-2">Views: 8</small>
+        <small class="replied pl-2 pr-2">Replies: {{ object.get_comment_total }}</small>
       </div>
     </div>
     <div class="row">
@@ -24,21 +28,15 @@
         </div>
       </div>
     </div>
-    <div class="row user-replies mb-2">
-      <div class="col-lg-12">
-        <p>Boom shackalack pimpin' arcu. Donec ante. Funky fresh placerizzle i'm in the shizzle at you son of a bizzle. Shut the shizzle up izzle tortizzle. Cras izzle get down get down izzle mi consectetizzle hizzle. Yippiyo ipsum dolizzle sizzle amizzle, phat break it down away. Curabitur elit arcu, things nizzle, hizzle yo, mollis mah nizzle, fo shizzle.</p>
-        <small><a class="mr-2 author" href="">Joe Bloggs</a></small>
-        <small class="text-muted">12/04/18</small>
-        <hr>
+    {% for comment in post.comments.all %}
+      <div class="row user-replies mb-2 pl-2">
+        <div class="col-lg-12">
+          <p>{{ comment.text }}</p>
+          <small class="mr-2 user-name">{{ comment.author }}</small>
+          <small class="text-muted">{{ comment.created_date|date:"F d, Y" }}</small>
+          <hr>
+        </div>
       </div>
-    </div>
-    <div class="row user-replies mb-2">
-      <div class="col-lg-12">
-        <p>Boom shackalack pimpin' arcu. Donec ante. Funky fresh placerizzle i'm in the shizzle at you son of a bizzle. Shut the shizzle up izzle tortizzle. Cras izzle get down get down izzle mi consectetizzle hizzle. Yippiyo ipsum dolizzle sizzle amizzle, phat break it down away. Curabitur elit arcu, things nizzle, hizzle yo, mollis mah nizzle, fo shizzle.</p>
-        <small><a class="mr-2 author" href="">Joe Bloggs</a></small>
-        <small class="text-muted">12/04/18</small>
-        <hr>
-      </div>
-    </div>
+    {% endfor %}
   </article>
 {% endblock content %}

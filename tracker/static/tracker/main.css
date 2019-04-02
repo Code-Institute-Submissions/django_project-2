@@ -20,6 +20,10 @@ body:before {
   z-index: -5;
 }
 
+.audiowide {
+  font-family: 'Audiowide', cursive;
+}
+
 .bugs-section {
   min-height: 70vh;
 }
@@ -75,8 +79,8 @@ body:before {
   border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
-.user-replies {
-  padding: 1rem;
+.user-name {
+  color: var(--orange);
 }
 
 .author {
@@ -130,6 +134,16 @@ span a.author{
   font-size: 20px;
 }
 
+.viewed {
+  background: #9eff47e3;
+  color: #6b6868;
+}
+
+.replied {
+  background: #c8eac8ba;
+  color: #6b6868;
+}
+
 .account-img {
   height: 5rem;
   width:  5rem;
@@ -137,9 +151,7 @@ span a.author{
   margin-bottom: 0.5rem;
 }
 
-.audiowide {
-  font-family: 'Audiowide', cursive;
-}
+
 
 
 /* forms */

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, Comment
 
 
 def home(request):
@@ -50,7 +50,7 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     """ Class CreateView to create new post"""
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'todo', 'fixed']
 
     def form_valid(self, form):
         """ Set user to currently logged in user, then validate form"""
@@ -59,10 +59,24 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 
 
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    """ Class CreateView to create new comment"""
+    model = Comment
+    fields = ['text']
+
+    def form_valid(self, form):
+        """ Set user to currently logged in user, then validate form"""
+        post = Post.objects.get(id=self.kwargs['pk'])
+        form.instance.author = self.request.user
+        form.instance.post = post
+        return super().form_valid(form)
+
+
+
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """ Class UpdateView for users to update thier own posts"""
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'todo', 'fixed']
 
     def form_valid(self, form):
         """ Set user to currently logged in user, then validate form"""
