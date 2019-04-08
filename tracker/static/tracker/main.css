@@ -1,6 +1,8 @@
 :root {
   --orange: #ef7559;
   --blue: #0a8cb3;
+  --hlblue: #08c4fd;
+  --yellow: #f4f11a;
 }
 
 body {
@@ -25,7 +27,7 @@ body:before {
 }
 
 .bugs-section {
-  min-height: 70vh;
+  min-height: 100vh;
 }
 
 .navbar {
@@ -45,6 +47,19 @@ body:before {
   font-size: 1rem;
 }
 
+.fa-bug {
+  color: #fd0a0a;
+}
+
+.fa-users-cog {
+  /* color: #10e810; */
+  color: var(--hlblue);
+}
+
+.hide {
+  display: none;
+}
+
 .card {
   opacity: 0.8;
   border-radius: 0;
@@ -54,6 +69,10 @@ body:before {
 
 .card a {
   text-decoration: none;
+}
+
+.card-text {
+
 }
 
 .list-view:hover {
@@ -144,6 +163,19 @@ span a.author{
   color: #6b6868;
 }
 
+.voted {
+  background: var(--hlblue);
+  color: #fff;
+}
+
+.viewed {
+  font-size: 13px;
+}
+
+.ticket-type {
+  font-size: 12px;
+}
+
 .account-img {
   height: 5rem;
   width:  5rem;
@@ -151,6 +183,13 @@ span a.author{
   margin-bottom: 0.5rem;
 }
 
+span.badge {
+  min-width: 5rem;
+}
+
+.pagination {
+  
+}
 
 
 
@@ -180,6 +219,65 @@ form a:hover {
 }
 
 /* End Form */
+
+/* BS Overwrite */
+.badge-pill {
+    border-radius: 2px;
+}
+
+.badge-warning {
+  background: var(--yellow);
+  color: #646e77;
+}
+/* End BS Overwrite */
+
+.blink {
+    animation: blink 6s steps(5, start) infinite;
+    -webkit-animation: blink 6s steps(5, start) infinite;
+  }
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+
+  /* Pulse icon */
+  .pulse{
+    -webkit-animation: pulse 2s ease-in;
+    -moz-animation: pulse 2s ease-in;
+     animation: pulse 2s ease-in;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.8);
+    opacity: 0.0;
+ }
+ 25% {
+    -webkit-transform: scale(1.0);
+    opacity: 0.1;
+ }
+ 50% {
+    -webkit-transform: scale(1.2);
+    opacity: 0.3;
+ }
+ 75% {
+    -webkit-transform: scale(1.4);
+    opacity: 0.5;
+ }
+ 100% {
+    -webkit-transform: scale(1.6);
+    opacity: 0.0;
+ }
+}
+  /* End Pulse button */
 
 /* Footer */
 #footer {

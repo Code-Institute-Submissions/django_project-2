@@ -4,14 +4,25 @@
     {% for post in posts %}
         <article class="card list-view mb-1 mt-1">
           <div class="row d-flex align-items-center">
-            <div class="col-lg-8">
-              <a href="{% url 'post-detail' post.id %}"><h6 class="card-title ml-2 mt-2">{{ post.title }}</h6></a>
+            <div class="col-lg-6">
+              <a href="{% url 'post-detail' post.id %}">
+                <h6 class="card-title ml-2 mt-2 ticket-title list">{{ post.title }}
+                  <span class="ml-2 ticket-type">
+                    <small class="hide">{{ post.ticket_type }}</small>
+                    <i class="fas fa-bug hide"></i>
+                    <i class="fas fa-users-cog pulse hide ml-2"></i>
+                  </span>
+                </h6>
+              </a>
+            </div>
+            <div class="col-lg-2">
+              <span class="badge badge-pill status">{{ post.status }}</span>
+            </div>
+            <div class="col-lg-2">
+              <small class="views text-muted pr-2">{{ post.views }} views</small>
             </div>
             <div class="col-lg-2">
               <small class="replies text-muted pr-2">{{ post.get_comment_total }} replies</small>
-            </div>
-            <div class="col-lg-2">
-              <small class="views text-muted pr-2">12 views</small>
             </div>
           </div>
           <div class="card-header">
@@ -20,25 +31,32 @@
           </div>
         </article>
     {% endfor %}
+
     {% if is_paginated %}
+      <div class="row d-flex pagination align-items-end">
+        <div class="col-lg-12">
+          {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4 mt-3" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4 mt-3" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+          {% endif %}
 
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-info mb-4 mt-3" href="?page=1">First</a>
-        <a class="btn btn-outline-info mb-4 mt-3" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
+          {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+              <a class="btn btn-info mb-4 mt-3" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+              <a class="btn btn-outline-info mb-4 mt-3" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+          {% endfor %}
 
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-info mb-4 mt-3" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-outline-info mb-4 mt-3" href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-      {% endfor %}
+          {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4 mt-3" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4 mt-3" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+          {% endif %}
+        </div>
 
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-info mb-4 mt-3" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-outline-info mb-4 mt-3" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
+      </div>
+
 
     {% endif %}
+
 {% endblock content %}

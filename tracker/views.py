@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.db.models import F
 from .models import Post, Comment
 
 
@@ -45,12 +46,19 @@ class PostDetailView(DetailView):
     """ Class DetailView to display individual posts"""
     model = Post
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = get_object_or_404(Post, id=self.kwargs.get('pk'))
+        post.inc_view_count()
+        post.save()
+        return context
+
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     """ Class CreateView to create new post"""
     model = Post
-    fields = ['title', 'content', 'todo', 'fixed']
+    fields = ['title', 'content', 'ticket_type', 'status']
 
     def form_valid(self, form):
         """ Set user to currently logged in user, then validate form"""
@@ -76,7 +84,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """ Class UpdateView for users to update thier own posts"""
     model = Post
-    fields = ['title', 'content', 'todo', 'fixed']
+    fields = ['title', 'content', 'ticket_type', 'status']
 
     def form_valid(self, form):
         """ Set user to currently logged in user, then validate form"""
