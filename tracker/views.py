@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, RedirectView
 from django.db.models import F
 from .models import Post, Comment
 
@@ -52,6 +52,23 @@ class PostDetailView(DetailView):
         post.inc_view_count()
         post.save()
         return context
+
+
+
+class PostLikeToggle(LoginRequiredMixin, RedirectView):
+    """ Class Redirect View for upvoting a Bug / Feature"""
+
+    def get_redirect_url(self, *args, **kwargs):
+        print('like route working')
+        post = get_object_or_404(Post, id=self.kwargs.get('pk'))
+        url_ = post.get_absolute_url()
+        user = self.request.user
+        if user.is_authenticated:
+            if user in post.upvotes.all():
+                post.upvotes.remove(user)
+            else:
+                post.upvotes.add(user)
+        return url_
 
 
 

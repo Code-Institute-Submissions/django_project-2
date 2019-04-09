@@ -4,25 +4,26 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
-
 def register(request):
+    """User sign-up view """
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
+            # save user to users database, see class Meta
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Your account has been created, you can now login!')
+            messages.success(request, f'Your account has been created {username}, you can now login!')
             return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
 
-
-
 @login_required
 def profile(request):
+    """User profile / edit profile view """
     if request.method == 'POST':
+        """Pre-populate current data in both forms """
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():

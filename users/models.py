@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from PIL import Image
 
@@ -11,9 +12,10 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def save(self):
+    def save(self, *args, **kwargs):
         """Inherit User.save function and add the Pillow functions before save """
-        super().save()
+        # super().save()
+        super(Profile, self).save(*args, **kwargs)
         """Pass user image into Pillow library and resize image """
         img = Image.open(self.image.path)
 
