@@ -42,6 +42,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def get_short(self):
+        return self.title[:10]
+
     def get_comment_total(self):
         """ Get comment count for sending to template"""
         return self.comments.count()

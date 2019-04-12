@@ -7,7 +7,8 @@ from .views import (
     PostUpdateView,
     PostDeleteView,
     UserPostListView,
-    CommentCreateView)
+    CommentCreateView,
+    ChartData)
 from . import views
 
 
@@ -20,5 +21,7 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('post/<int:pk>/comment/', CommentCreateView.as_view(), name='comment-create'),
+    path('graphs/', views.graphs, name='tracker-graphs'),
+    path('api/charts/data', ChartData.as_view()),
     path('about/', views.about, name='tracker-about'),
 ]

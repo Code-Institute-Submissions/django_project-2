@@ -1,8 +1,10 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, RedirectView
-from django.db.models import F
+from django.db.models import Count, Q
 from .models import Post, Comment
 
 
@@ -15,6 +17,56 @@ def home(request):
         'posts': Post.objects.all()
     }
     return render(request, 'tracker/home.html', context)
+
+
+class ChartData(APIView):
+    """
+    Django Rest APIView
+    View to get bug and feature data for rendering charts with Chart JS
+    Using Ajax calls on front end to render data driven charts
+    """
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        bugs = Post.objects.filter(ticket_type='BG')\
+        .annotate(num_upvotes=Count('upvotes')).order_by('-num_upvotes')[:10]
+
+        features = Post.objects.filter(ticket_type='FT')\
+        .annotate(num_upvotes=Count('upvotes')).order_by('-num_upvotes')[:10]
+
+        bug_labels = [1,2,3,0,0,0,0,0,0,0]
+        bug_data = [1,2,3,4,5,6,7,8,9,10]
+        for bug in bugs:
+            upvotes = bug.upvotes.count()
+            label = bug.get_short()
+            # bug_data.append(upvotes)
+            # bug_labels.append(label)
+
+        feature_labels = [1,2,3,0,0,0,0,0,0,0]
+        feature_data = [1,2,3,4,5,6,7,8,9,10]
+        for feat in features:
+            upvotes = feat.upvotes.count()
+            label = feat.get_short()
+            # feature_data.append(upvotes)
+            # feature_labels.append(label)
+
+        data = {
+            "bugs": {
+                "labels":  bug_labels,
+                "datasets": [{
+                  "data": bug_data
+                }]
+            },
+            "features": {
+                "labels":  feature_labels,
+                "datasets": [{
+                  "data": feature_data
+                }]
+            }
+        }
+
+        return Response(data)
 
 
 
@@ -52,6 +104,10 @@ class PostDetailView(DetailView):
         post.inc_view_count()
         post.save()
         return context
+
+
+def graphs(request):
+    return render(request, 'tracker/graphs.html', {'title':'Graphs'})
 
 
 
