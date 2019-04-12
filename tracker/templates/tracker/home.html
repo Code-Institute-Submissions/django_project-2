@@ -1,12 +1,12 @@
 {% extends "tracker/base.html" %}
 {% block content %}
 <section class="bugs-section row">
-  <div class="col-md-8">
+  <div class="col-md-12 col-lg-8">
     <h4 class="bugs mt-3">Active Bugs / Feature Requests</h4>
     {% for post in posts %}
         <article class="card list-view mb-1 mt-1">
           <div class="row d-flex align-items-center">
-            <div class="col-lg-6">
+            <div class="col-8 col-sm-6 col-md-6 col-lg-6">
               <a href="{% url 'post-detail' post.id %}">
                 <h6 class="card-title ml-2 mt-2 ticket-title list">{{ post.title }}
                   <span class="ml-2 ticket-type">
@@ -17,13 +17,13 @@
                 </h6>
               </a>
             </div>
-            <div class="col-lg-2">
+            <div class="col-4 col-sm-2 col-md-2 col-lg-2">
               <span class="badge badge-pill status">{{ post.status }}</span>
             </div>
-            <div class="col-lg-2">
+            <div class="col-4 col-sm-2 col-md-2 col-lg-2 views-column">
               <small class="views text-muted pr-2">{{ post.views }} views</small>
             </div>
-            <div class="col-lg-2">
+            <div class="col-4 col-sm-2 col-md-2 col-lg-2 upvotes-column">
               <small class="upvotes text-muted pr-2">
                 <span class="upvotes-total">{{ post.get_upvotes_total }}</span> upvote
               </small>
@@ -36,7 +36,7 @@
         </article>
     {% endfor %}
   </div>
-  <div class="col-md-6 col-lg-4 upvotes-chart">
+  <div class="col-lg-4 upvotes-chart">
     <div class="graph1">
       <canvas id="bugChart"></canvas>
     </div>

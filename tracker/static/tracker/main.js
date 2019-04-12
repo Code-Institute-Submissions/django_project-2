@@ -4,7 +4,7 @@ $(document).ready(function(){
   const featChart = document.getElementById('featChart').getContext('2d')
   const endpoint = 'api/charts/data'
 
-  // Bug upvotes Chart
+  // Bug upvotes Chartt
   $.ajax({
     method: 'GET',
     url: endpoint,
