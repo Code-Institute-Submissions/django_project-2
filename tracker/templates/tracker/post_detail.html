@@ -1,69 +1,74 @@
 {% extends "tracker/base.html" %}
 {% block content %}
-  <article class="card post-detail mt-3 mb-3">
-    <div class="row">
-      <div class="col-lg-2">
-        <img src="{{ object.author.profile.image.url }}" class="img-fluid" alt="avatar">
-        {% if object.author == user %}
-            <a href="{% url 'post-update' object.id %}"><i class="far fa-edit ml-1 edit-post"></i></a>
-            <a href="{% url 'post-delete' object.id %}"><i class="fas fa-eraser ml-1 rubber"></i></a>
-        {% endif %}
-      </div>
-      <div class="col-lg-6">
-        <h5 class="card-title ticket-title">{{ object.title }}
-          <span class="ml-2 ticket-type">
-            <small class="hide">{{ post.ticket_type }}</small>
-            <i class="fas fa-bug hide"></i>
-            <i class="fas fa-users-cog pulse hide ml-2"></i>
-          </span>
-        </h5>
-        <a href="{% url 'comment-create' object.id %}">
-          <i class="material-icons mr-2">comment</i>
-        </a>
-        {% if user in post.like_state %}
-            <a href="{{ post.get_upvote_url }}">
-              <i class="material-icons mr-2">thumb_down</i>
-            </a>
-        {% else %}
-            <a href="{{ post.get_upvote_url }}">
-              <i class="material-icons mr-2">thumb_up</i>
-            </a>
-        {% endif %}
-      </div>
-      <div class="col-lg-2">
-        <span class="badge badge-pill badge-info status">{{ post.status }}</span>
-      </div>
-      <div class="col-lg-2 post-detail flex">
-        <small class="viewed pl-2 pr-2">Views: {{ post.views }}</small>
-        <small class="replied pl-2 pr-2">Replies: {{ object.get_comment_total }}</small>
-        <small class="voted pl-2 pr-2">Upvotes: {{ post.get_upvotes_total }}</small>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card-header mb-1">
-          <small>
-            <a class="mr-2 author" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-          </small>
-          <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+<section class="details-section row">
+  <div class="col-md-8">
+    <article class="card post-detail mt-3 mb-3">
+      <div class="row">
+        <div class="col-lg-2">
+          <img src="{{ object.author.profile.image.url }}" class="img-fluid" alt="avatar">
+          {% if object.author == user %}
+              <a href="{% url 'post-update' object.id %}"><i class="far fa-edit ml-1 edit-post"></i></a>
+              <a href="{% url 'post-delete' object.id %}"><i class="fas fa-eraser ml-1 rubber"></i></a>
+          {% endif %}
+        </div>
+        <div class="col-lg-6">
+          <h5 class="card-title ticket-title">{{ object.title }}
+            <span class="ml-2 ticket-type">
+              <small class="hide">{{ post.ticket_type }}</small>
+              <i class="fas fa-bug hide"></i>
+              <i class="fas fa-users-cog pulse hide ml-2"></i>
+            </span>
+          </h5>
+          <a href="{% url 'comment-create' object.id %}">
+            <i class="material-icons mr-2">comment</i>
+          </a>
+          {% if user in post.like_state %}
+              <a href="{{ post.get_upvote_url }}">
+                <i class="material-icons mr-2">thumb_down</i>
+              </a>
+          {% else %}
+              <a href="{{ post.get_upvote_url }}">
+                <i class="material-icons mr-2">thumb_up</i>
+              </a>
+          {% endif %}
+        </div>
+        <div class="col-lg-2">
+          <span class="badge badge-pill badge-info status">{{ post.status }}</span>
+        </div>
+        <div class="col-lg-2 post-detail flex">
+          <small class="viewed pl-2 pr-2">Views: {{ post.views }}</small>
+          <small class="replied pl-2 pr-2">Replies: {{ object.get_comment_total }}</small>
+          <small class="voted pl-2 pr-2">Upvotes: {{ post.get_upvotes_total }}</small>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <p class="card-text pt-1 ml-1 pl-2 pr-1 pr-2">{{ object.content }}</p>
-        <hr>
-      </div>
-    </div>
-    {% for comment in post.comments.all %}
-      <div class="row user-replies mb-2 pl-2">
+      <div class="row">
         <div class="col-lg-12">
-          <p>{{ comment.text }}</p>
-          <small class="mr-2 user-name">{{ comment.author }}</small>
-          <small class="text-muted">{{ comment.created_date|date:"F d, Y" }}</small>
+          <div class="card-header mb-1">
+            <small>
+              <a class="mr-2 author" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+            </small>
+            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="card-text pt-1 ml-1 pl-2 pr-1 pr-2">{{ object.content }}</p>
           <hr>
         </div>
       </div>
-    {% endfor %}
-  </article>
+      {% for comment in post.comments.all %}
+        <div class="row user-replies mb-2 pl-2">
+          <div class="col-lg-12">
+            <p>{{ comment.text }}</p>
+            <small class="mr-2 user-name">{{ comment.author }}</small>
+            <small class="text-muted">{{ comment.created_date|date:"F d, Y" }}</small>
+            <hr>
+          </div>
+        </div>
+      {% endfor %}
+    </article>
+  </div>
+</section>
+
 {% endblock content %}

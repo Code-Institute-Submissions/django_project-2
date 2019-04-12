@@ -1,8 +1,10 @@
 :root {
   --orange: #ef7559;
-  --blue: #0a8cb3;
+  --blue:   #0a8cb3;
   --hlblue: #08c4fd;
   --yellow: #f4f11a;
+  --red:    #fd0a0a;
+  --green:  #10e810;
 }
 
 body {
@@ -11,6 +13,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  /* box-sizing: border-box; */
 }
 
 body:before {
@@ -20,6 +23,10 @@ body:before {
   top: 0; bottom: 0;
   background: rgba(188, 214, 140, 0.4);
   z-index: -5;
+}
+
+.main-cont {
+  min-height: 80vh;
 }
 
 .audiowide {
@@ -38,21 +45,16 @@ body:before {
   color: rgba(255,255,255,.9);
 }
 
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: #c8ccd0;
-}
-
 .bugs {
-  color: #7f8b8e;
+  color: var(--yellow);
   font-size: 1rem;
 }
 
 .fa-bug {
-  color: #fd0a0a;
+  color: var(--red);
 }
 
 .fa-users-cog {
-  /* color: #10e810; */
   color: var(--hlblue);
 }
 
@@ -135,11 +137,7 @@ span a.author{
   margin-bottom: 0;
 }
 
-.replies {
-  border-right: 2px solid var(--orange);
-}
-
-.views {
+.upvotes, .views {
   border-right: 2px solid var(--orange);
 }
 
@@ -188,9 +186,19 @@ span.badge {
 }
 
 .pagination {
-  
+
 }
 
+/* Charts */
+.upvotes-chart {
+  display: none;
+  margin-top: 1rem;
+}
+
+.graph2 {
+  margin-top: 2rem;
+}
+/* End Charts */
 
 
 /* forms */
@@ -340,3 +348,33 @@ form a:hover {
 }
 
 /* End Footer */
+
+/* Media Queries */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+  .navbar-dark .navbar-nav .nav-link {
+    border-bottom: 2px solid transparent;
+  }
+
+  .navbar-dark .navbar-nav .nav-link:hover {
+    border-bottom: 2px solid var(--yellow);
+  }
+
+  .upvotes-chart {
+    display: block;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
