@@ -15,6 +15,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  margin-top: 4rem;
 }
 
 body:before {
@@ -366,14 +367,33 @@ form a:hover {
     min-height: 60vh;
   }
 
+  h5.card-title {
+    font-size: 14px;
+  }
 
+  p.card-text {
+    font-size: 14px;
+  }
+
+  .material-icons {
+    font-size: 18px;
+  }
+
+  .card-header {
+    padding: .2rem .4rem;
+  }
+
+  h6.ticket-title {
+    font-size: 14px;
+  }
 }
 
 
 /* Small devices (phones, 767px and down) */
 @media only screen and (max-width: 767px) {
   .card-header {
-    display: none;
+    /* display: none; */
+    margin-top: .5rem;
   }
 
   .bugs-section {
@@ -390,6 +410,10 @@ form a:hover {
 
   h6 {
    font-size: 12px;
+  }
+
+  .ticket-title {
+    font-size: 16px;
   }
 }
 

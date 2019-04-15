@@ -1,39 +1,42 @@
 {% extends "tracker/base.html" %}
 {% block content %}
+
 <section class="bugs-section row">
   <div class="col-md-12 col-lg-8">
     <h4 class="bugs mt-3">Active Bugs / Feature Requests</h4>
+
     {% for post in posts %}
-        <article class="card list-view mb-1 mt-1">
-          <div class="row d-flex align-items-center">
-            <div class="col-8 col-sm-6 col-md-6 col-lg-6">
-              <a href="{% url 'post-detail' post.id %}">
-                <h6 class="card-title ml-2 mt-2 ticket-title list">{{ post.title }}
-                  <span class="ml-2 ticket-type">
-                    <small class="hide">{{ post.ticket_type }}</small>
-                    <i class="fas fa-bug hide"></i>
-                    <i class="fas fa-users-cog pulse hide ml-2"></i>
-                  </span>
-                </h6>
-              </a>
-            </div>
-            <div class="col-4 col-sm-2 col-md-2 col-lg-2">
-              <span class="badge badge-pill status">{{ post.status }}</span>
-            </div>
-            <div class="col-4 col-sm-2 col-md-2 col-lg-2 views-column">
-              <small class="views text-muted pr-2">{{ post.views }} views</small>
-            </div>
-            <div class="col-4 col-sm-2 col-md-2 col-lg-2 upvotes-column">
-              <small class="upvotes text-muted pr-2">
-                <span class="upvotes-total">{{ post.get_upvotes_total }}</span> upvote
-              </small>
-            </div>
+    {% block article %}{% endblock article %}
+      <article class="card list-view mb-1 mt-1">
+        <div class="row d-flex align-items-center">
+          <div class="col-8 col-sm-6 col-md-6 col-lg-6">
+            <a href="{% url 'post-detail' post.id %}">
+              <h6 class="card-title ml-2 mt-2 ticket-title list">{{ post.title }}
+                <span class="ml-2 ticket-type">
+                  <small class="hide">{{ post.ticket_type }}</small>
+                  <i class="fas fa-bug hide"></i>
+                  <i class="fas fa-users-cog pulse hide ml-2"></i>
+                </span>
+              </h6>
+            </a>
           </div>
-          <div class="card-header">
-            <small><a class="mr-2 author" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a></small>
-            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+          <div class="col-4 col-sm-2 col-md-2 col-lg-2">
+            <span class="badge badge-pill status">{{ post.status }}</span>
           </div>
-        </article>
+          <div class="col-4 col-sm-2 col-md-2 col-lg-2 views-column">
+            <small class="views text-muted pr-2">{{ post.views }} views</small>
+          </div>
+          <div class="col-4 col-sm-2 col-md-2 col-lg-2 upvotes-column">
+            <small class="upvotes text-muted pr-2">
+              <span class="upvotes-total">{{ post.get_upvotes_total }}</span> upvote
+            </small>
+          </div>
+        </div>
+        <div class="card-header">
+          <small><a class="mr-2 author" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a></small>
+          <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+        </div>
+      </article>
     {% endfor %}
   </div>
   <div class="col-lg-4 upvotes-chart">
@@ -44,9 +47,6 @@
       <canvas id="featChart"></canvas>
     </div>
   </div>
-  <!-- <div class="col-md-6 col-lg-4 upvotes-chart">
-    <canvas id="featChart"></canvas>
-  </div> -->
 </section>
 
 

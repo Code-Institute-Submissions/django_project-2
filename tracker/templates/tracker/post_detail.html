@@ -1,17 +1,17 @@
 {% extends "tracker/base.html" %}
 {% block content %}
 <section class="details-section row">
-  <div class="col-md-8">
+  <div class="col-md-12 col-lg-8">
     <article class="card post-detail mt-3 mb-3">
       <div class="row">
-        <div class="col-lg-2">
+        <div class="col-3 col-sm-2 col-md-2 col-lg-2">
           <img src="{{ object.author.profile.image.url }}" class="img-fluid" alt="avatar">
           {% if object.author == user %}
               <a href="{% url 'post-update' object.id %}"><i class="far fa-edit ml-1 edit-post"></i></a>
               <a href="{% url 'post-delete' object.id %}"><i class="fas fa-eraser ml-1 rubber"></i></a>
           {% endif %}
         </div>
-        <div class="col-lg-6">
+        <div class="col-9 col-sm-7 col-md-6 col-lg-6">
           <h5 class="card-title ticket-title">{{ object.title }}
             <span class="ml-2 ticket-type">
               <small class="hide">{{ post.ticket_type }}</small>
@@ -32,13 +32,13 @@
               </a>
           {% endif %}
         </div>
-        <div class="col-lg-2">
+        <div class="col-3 col-sm-2 col-md-2 col-lg-2">
           <span class="badge badge-pill badge-info status">{{ post.status }}</span>
         </div>
-        <div class="col-lg-2 post-detail flex">
+        <div class="col-9 col-md-2 col-lg-2 post-detail flex">
           <small class="viewed pl-2 pr-2">Views: {{ post.views }}</small>
           <small class="replied pl-2 pr-2">Replies: {{ object.get_comment_total }}</small>
-          <small class="voted pl-2 pr-2">Upvotes: {{ post.get_upvotes_total }}</small>
+          <small class="voted pl-2 pr-2">Votes: {{ post.get_upvotes_total }}</small>
         </div>
       </div>
       <div class="row">
@@ -68,6 +68,14 @@
         </div>
       {% endfor %}
     </article>
+  </div>
+  <div class="col-lg-4 upvotes-chart">
+    <div class="graph1">
+      <canvas id="bugChart"></canvas>
+    </div>
+    <div class="graph2">
+      <canvas id="featChart"></canvas>
+    </div>
   </div>
 </section>
 
