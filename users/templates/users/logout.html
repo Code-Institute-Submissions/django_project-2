@@ -1,11 +1,26 @@
 {% extends "tracker/base.html" %}
 {% block content %}
-    <section class="logout-section">
-      <h3>You have been logged out</h3>
-      <div class="border-top pt-3">
-        <small class="text-muted">
-          <a href="{% url 'login' %}">Login In</a>
-        </small>
+  <!-- <section class="logout-section">
+    <div class="row justify-content-center d-flex align-items-center logout">
+      <div class="col-lg-8">
+        <h3>You have been logged out</h3>
+        <div class="border-top pt-3">
+          <small class="text-muted">
+            <a href="{% url 'login' %}">Login In</a>
+          </small>
+        </div>
       </div>
-    </section>
+    </div>
+  </section> -->
+  <section class="row logout-section goodbye animated fadeInDown">
+    <div class="col-sm-10 col-md-12">
+      <div class="text-box">
+    		<h2 class="heading-primary">
+    			<span class="heading-primary-main mb-1">You have logged out</span>
+    			<span class="heading-primary-sub">See you soon! </span>
+    		</h2>
+    		<a href="{% url 'login' %}" class="btn btn-white btn-animated">sign in</a>
+    	</div>
+    </div>
+  </section>
 {% endblock content %}

@@ -1,12 +1,17 @@
 {% extends "tracker/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-  <section class="register-section mt-3 mb-3">
-    <form class="shadow" method="POST">
-      {% csrf_token %}
-      <h4>Bug description</h4>
-      {{ form|crispy }}
-      <button class="btn btn-outline-info" type="submit">Post</button>
-    </form>
+  <section class="register-section">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <form class="shadow mt-3 mb-3 animated fadeIn" method="POST">
+          {% csrf_token %}
+          <h5 class="grey">Ticket description</h5>
+          <p class="small">Be short and descriptive as possible</p>
+          {{ form|crispy }}
+          <button class="btn btn-outline-info" type="submit">Post</button>
+        </form>
+      </div>
+    </div>
   </section>
 {% endblock content %}
