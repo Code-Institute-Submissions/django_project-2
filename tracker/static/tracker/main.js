@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
-  const bugChart = document.getElementById('bugChart').getContext('2d')
-  const featChart = document.getElementById('featChart').getContext('2d')
-  const endpoint = 'api/charts/data'
+  // const bugChart = document.getElementById('bugChart').getContext('2d')
+  // const featChart = document.getElementById('featChart').getContext('2d')
+  const endpoint = '/api/charts/data'
 
   // Bug upvotes Chartt
   $.ajax({
@@ -141,19 +141,21 @@ function limitTicketTitle() {
   }
 }
 
-// Function to change singular/plural of 'upvotes'
+// Function to change singular/plural of 'upvotes' on home page
 function upvotes() {
   if (cards) {
     [...cards].forEach(card => {
-      const totalUpvotes = parseInt(card.getElementsByClassName('upvotes-total')[0].innerText)
-      let element = card.getElementsByClassName('upvotes')[0].innerText
-      if (totalUpvotes > 1) {
-        element += 's'
-        card.getElementsByClassName('upvotes')[0].innerText = element
-      }
-  	})
+      if (card.getElementsByClassName('upvotes-total')[0]) {
+        const totalUpvotes = parseInt(card.getElementsByClassName('upvotes-total')[0].innerText)
+          let element = card.getElementsByClassName('upvotes')[0].innerText
+          if (totalUpvotes > 1) {
+            element += 's'
+            card.getElementsByClassName('upvotes')[0].innerText = element
+          }
+        }
+    	})
+    }
   }
-}
 
 changeStatus()
 displayIcon()
@@ -161,7 +163,43 @@ limitTicketTitle()
 upvotes()
 
 
-
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 
 
 

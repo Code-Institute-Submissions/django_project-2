@@ -1,0 +1,23 @@
+{% extends "tracker/base.html" %}
+
+{% block content %}
+  <section class="chart-section">
+    <article class="row">
+      <div class="col-lg-12 mb-3">
+        <canvas id="myChart"></canvas>
+      </div>
+    </article>
+    <article class="row">
+      <div class="col-sm-12 col-md-6 col-lg-6 upvotes-chart">
+        <div class="graph1">
+          <canvas id="bugChart"></canvas>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6 upvotes-chart">
+        <div class="graph2">
+          <canvas id="featChart"></canvas>
+        </div>
+      </div>
+    </article>
+  </section>
+{% endblock content %}
