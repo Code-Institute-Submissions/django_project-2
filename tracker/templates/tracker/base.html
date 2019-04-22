@@ -76,7 +76,7 @@
   <main role="main" class="container main-cont">
     {% if messages %}
       {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} mt-3 animated fadeOutUp">
+        <div class="alert alert-{{ message.tags }} mt-3 animated fadeOutUp delay-2s">
           {{ message }}
         </div>
       {% endfor %}
