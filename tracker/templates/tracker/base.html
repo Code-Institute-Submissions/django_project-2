@@ -55,6 +55,9 @@
                 <a class="nav-link" href="{% url 'profile' %}">Profile</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'tracker-graphs' %}">Charts</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
               </li>
             {% else %}
@@ -73,7 +76,7 @@
   <main role="main" class="container main-cont">
     {% if messages %}
       {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} mt-3">
+        <div class="alert alert-{{ message.tags }} mt-3 animated fadeOutUp">
           {{ message }}
         </div>
       {% endfor %}

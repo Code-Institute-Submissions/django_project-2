@@ -65,7 +65,6 @@ class ChartData(APIView):
                 }]
             }
         }
-
         return Response(data)
 
 
@@ -76,7 +75,7 @@ class PostListView(ListView):
     template_name = 'tracker/home.html' # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
-    paginate_by = 6
+    paginate_by = 7
 
 
 
@@ -85,7 +84,7 @@ class UserPostListView(ListView):
     model = Post
     template_name = 'tracker/user_posts.html' # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
-    paginate_by = 5
+    paginate_by = 6
 
     def get_queryset(self):
         """ Get a list of user post objects"""
@@ -106,6 +105,7 @@ class PostDetailView(DetailView):
         return context
 
 
+
 def graphs(request):
     return render(request, 'tracker/graphs.html', {'title':'Graphs'})
 
@@ -115,7 +115,6 @@ class PostLikeToggle(LoginRequiredMixin, RedirectView):
     """ Class Redirect View for upvoting a Bug / Feature"""
 
     def get_redirect_url(self, *args, **kwargs):
-        print('like route working')
         post = get_object_or_404(Post, id=self.kwargs.get('pk'))
         url_ = post.get_absolute_url()
         user = self.request.user

@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'tracker.apps.TrackerConfig',
     'users.apps.UsersConfig',
+    'products.apps.ProductsConfig',
+    'cart.apps.CartConfig',
     'crispy_forms',
     'rest_framework',
     'django.contrib.admin',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +76,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'bugtracker.wsgi.application'
+
+# Stripe settings
+# if DEBUG:
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 
 
 # Database
