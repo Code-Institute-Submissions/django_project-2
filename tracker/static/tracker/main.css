@@ -402,21 +402,6 @@ form a:hover {
 	clip-path: polygon(0 0, 100% 0, 100% 55vh, 0 100%);
 }
 
-/* .goodbye {
-  	height: 100vh;
-  	background-image:
-	  linear-gradient(to right bottom,
-     rgba(76, 216, 255, 0.8),
-     rgba(30, 108, 217, 0.8)),
-     url('https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg');
-
-	background-size: cover;
-  	background-position: top;
-  	position: relative;
-
-  	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-} */
-
 .text-box {
 	position: absolute;
 	top:  50%;
@@ -472,8 +457,108 @@ form a:hover {
   color:     #777;
 	font-size: 14px;
 }
-
 /* End Logout Page */
+
+
+/* About Page */
+
+body.body-about {
+  background: none;
+  height:100%;
+  margin:0;
+  font-family:"Lato", sans-serif;
+  font-size:16px;
+  font-weight:400;
+  line-height:1.8em;
+  color:#666;
+}
+
+body.body-about:before {
+  background: none;
+}
+
+.section-about, html {
+  height:100%;
+  margin:0;
+  font-size:16px;
+  font-weight:400;
+  line-height:1.8em;
+  color:#666;
+  text-align:center;
+}
+
+.pimg1, .pimg2, .pimg3{
+  position:relative;
+  opacity:0.70;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  /*
+    fixed = parallax
+    scroll = normal
+  */
+  background-attachment:fixed;
+}
+
+.pimg1{
+  background-image:url('/media/bg.jpg');
+  min-height:100%;
+}
+
+.pimg2{
+  background-image:url('/media/about2.jpg');
+  min-height:400px;
+}
+
+.pimg3{
+  background-image:url('/media/about3.jpg');
+  min-height:200px;
+}
+
+.section-light{
+  background-color:#f4f4f4;
+  color:#666;
+  padding:50px 80px;
+}
+
+.section-dark{
+  background-color:#282e34;
+  color:#ddd;
+  padding:50px 80px;
+}
+
+.ptext{
+  position:absolute;
+  top:50%;
+  width:100%;
+  text-align:center;
+  color:#000;
+  font-size:2.5rem;
+  letter-spacing:8px;
+  text-transform:uppercase;
+}
+
+.ptext .border{
+  background-color:#111;
+  color:#fff;
+  padding:20px;
+}
+
+.ptext .border:hover{
+  background-color:var(--blue);
+  color:#fff;
+  padding:20px;
+}
+
+.attract:hover {
+  transform:  translateY(-3px);
+}
+
+.ptext .border.trans{
+  background-color:transparent;
+}
+/* End About Page */
 
 /* Media Queries */
 /* Extra Small devices (portrait tablets and large phones, 600px and up) */
@@ -523,6 +608,10 @@ form a:hover {
   .heading-primary-sub {
   	font-size:      10px;
   	letter-spacing: 1px;
+  }
+
+  .pimg1, .pimg2, .pimg3{
+    background-attachment:scroll;
   }
 }
 
