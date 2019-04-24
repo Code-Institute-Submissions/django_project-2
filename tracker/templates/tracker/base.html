@@ -74,6 +74,9 @@
     </nav>
   </header>
   <main role="main" class="container main-cont">
+    {% if user.is_authenticated %}
+      <span class="welcome">Welcome {{ user.username }}!</span>
+    {% endif %}
     {% if messages %}
       {% for message in messages %}
         <div class="alert alert-{{ message.tags }} mt-3 animated fadeOutUp delay-2s">

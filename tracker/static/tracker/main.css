@@ -31,6 +31,12 @@ body:before {
   z-index: -5;
 }
 
+.welcome {
+  color: white;
+  font-weight: bold;
+  border-bottom: 2px solid #80a9f5;
+}
+
 .grey {
   color: var(--grey);
 }
