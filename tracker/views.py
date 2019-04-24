@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, RedirectView
@@ -118,11 +119,18 @@ class PostLikeToggle(LoginRequiredMixin, RedirectView):
         post = get_object_or_404(Post, id=self.kwargs.get('pk'))
         url_ = post.get_absolute_url()
         user = self.request.user
-        if user.is_authenticated:
+        if user.is_authenticated and post.ticket_type == 'BG':
             if user in post.upvotes.all():
                 post.upvotes.remove(user)
             else:
                 post.upvotes.add(user)
+        elif user.is_authenticated and post.ticket_type == 'FT':
+            if user.profile.purchased.name:
+                if user in post.upvotes.all():
+                    post.upvotes.remove(user)
+                else:
+                    post.upvotes.add(user)
+            messages.warning(self.request, f'Your have not yet purchased upvotes')
         return url_
 
 
@@ -130,7 +138,7 @@ class PostLikeToggle(LoginRequiredMixin, RedirectView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     """ Class CreateView to create new post"""
     model = Post
-    fields = ['title', 'content', 'ticket_type', 'status']
+    fields = ['title', 'content', 'ticket_type']
 
     def form_valid(self, form):
         """ Set user to currently logged in user, then validate form"""
@@ -156,7 +164,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """ Class UpdateView for users to update thier own posts"""
     model = Post
-    fields = ['title', 'content', 'ticket_type', 'status']
+    fields = ['title', 'content', 'ticket_type']
 
     def form_valid(self, form):
         """ Set user to currently logged in user, then validate form"""
