@@ -1,82 +1,69 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-  <title>Unicorn</title>
-  <link rel="stylesheet" href="{% static 'tracker/main.css' %}">
-</head>
-
-<body class="body-about">
-
-  <section class="section-about">
-    <a class="" href="{% url 'tracker-home' %}">
-      <div class="pimg1">
-        <div class="ptext attract">
-          <span class="border">
-            Unicorn Attractor
-          </span>
+{% extends "tracker/base.html" %} {% block content %}
+<section class="about-section">
+  <div class="row text-center mb-3 ">
+    <div class="col-lg-12">
+      <div class="ptext about-header">
+        <span class="bord">
+          About Unicorn
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-lg-12">
+      <p class="about mt-3">Unicorn is a web app aimed at fixing bugs and creating new features for our service.  Users are welcome and can register to start using our services.  Unicorn allows users to log their tickets which will appear on the list of tickets on the homepage.  We will fix these bugs for free and we will use the popularity of bugs to prioritize fixes.  To help us decide you the user can click the upvote symbol in post descriptions.  We also provide a features service which is similar to our bug fixing service, you the user can suggest a new feature for us to develop but to enable us to develop a feature we need to charge a fee to upvote a feature request.  If a feature request gets a certain number of upvotes we will develop the feature fo our users.
+      </p>
+    </div>
+  </div>
+  <div class="row mbr-justify-content-center">
+    <article class="col-lg-6 mbr-col-md-10">
+      <div class="wrap">
+        <div class="ico-wrap">
+          <span class="mbr-iconfont fa-volume-up fa"></span>
+        </div>
+        <div class="text-wrap vcenter">
+          <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Report Bugs</h2>
+          <p class="mbr-fonts-style text1 mbr-text display-6 about-card">Report your bugs and we will fix them for free.. Contribute to other users bugs.</p>
         </div>
       </div>
-    </a>
-
-    <article class="article section-light">
-      <h2>Who are we?</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, laudantium, quibusdam? Nobis, delectus, commodi, fugit amet tempora facere dolores nisi facilis consequatur, odio hic minima nostrum. Perferendis eos earum praesentium, blanditiis sapiente labore aliquam ipsa architecto vitae. Minima soluta temporibus voluptates inventore commodi cumque esse suscipit optio aliquam et, dolorem a cupiditate nihil fuga laboriosam fugiat placeat dignissimos! Unde eveniet placeat quisquam blanditiis voluptatem doloremque fugiat dolor repellendus ratione in. Distinctio provident dolorem modi cumque illo enim quidem tempora deserunt nostrum voluptate labore repellat quisquam quasi cum suscipit dolore ab consequuntur, ad porro earum temporibus. Laborum ad temporibus ex, omnis!
-      </p>
     </article>
-
-    <div class="pimg2">
-      <div class="ptext">
-        <span class="border trans">
-          We Solve Problems
-        </span>
-      </div>
-    </div>
-
-    <article class="article section-dark">
-      <h2>Bug Fixes</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, laudantium, quibusdam? Nobis, delectus, commodi, fugit amet tempora facere dolores nisi facilis consequatur, odio hic minima nostrum. Perferendis eos earum praesentium, blanditiis sapiente labore aliquam ipsa architecto vitae. Minima soluta temporibus voluptates inventore commodi cumque esse suscipit optio aliquam et, dolorem a cupiditate nihil fuga laboriosam fugiat placeat dignissimos! Unde eveniet placeat quisquam blanditiis voluptatem doloremque fugiat dolor repellendus ratione in.
-      </p>
-    </article>
-
-    <div class="pimg3">
-      <div class="ptext">
-        <span class="border trans">
-          You need it..
-        </span>
-      </div>
-    </div>
-    <div class="pimg3">
-      <div class="ptext">
-        <span class="border trans">
-          ..We build it
-        </span>
-      </div>
-    </div>
-
-
-    <article class="article section-dark">
-      <h2>Feature Requests</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, laudantium, quibusdam? Nobis, delectus, commodi, fugit amet tempora facere dolores nisi facilis consequatur, odio hic minima nostrum. Perferendis eos earum praesentium, blanditiis sapiente labore aliquam ipsa architecto vitae. Minima soluta temporibus voluptates inventore commodi cumque esse suscipit optio aliquam et, dolorem a cupiditate nihil fuga laboriosam fugiat placeat dignissimos! Unde eveniet placeat quisquam blanditiis voluptatem doloremque fugiat dolor repellendus ratione in.
-      </p>
-    </article>
-
-    <a href="{% url 'tracker-home' %}">
-      <div class="pimg1">
-        <div class="ptext attract">
-          <span class="border">
-            Unicorn Attractor
-          </span>
+    <article class="col-lg-6 mbr-col-md-10">
+      <div class="wrap">
+        <div class="ico-wrap">
+          <span class="mbr-iconfont fa-calendar fa"></span>
+        </div>
+        <div class="text-wrap vcenter">
+          <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
+            Fast turnaround
+          </h2>
+          <p class="mbr-fonts-style text1 mbr-text display-6 about-card">We strive to always get problems solved as quickly as possible.</p>
         </div>
       </div>
-    </a>
-  </section>
-
-</body>
+    </article>
+    <article class="col-lg-6 mbr-col-md-10">
+      <div class="wrap">
+        <div class="ico-wrap">
+          <span class="mbr-iconfont fa-globe fa"></span>
+        </div>
+        <div class="text-wrap vcenter">
+          <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Features Development
+          </h2>
+          <p class="mbr-fonts-style text1 mbr-text display-6 about-card">Got a feature you like..we can build it for you no problem..</p>
+        </div>
+      </div>
+    </article>
+    <article class="col-lg-6 mbr-col-md-10">
+      <div class="wrap">
+        <div class="ico-wrap">
+          <span class="mbr-iconfont fa-trophy fa"></span>
+        </div>
+        <div class="text-wrap vcenter">
+          <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Achieve Your Targets
+          </h2>
+          <p class="mbr-fonts-style text1 mbr-text display-6 about-card">With us you can be sure to meet your targets on schedule</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+{% endblock content %}
