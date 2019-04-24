@@ -12,7 +12,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 class Profile(models.Model):
     """User profile details model """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(Product, blank=True)
+    purchased = models.ManyToManyField(Product, blank=True)
     stripe_id = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
@@ -29,5 +29,3 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
-
-    

@@ -34,7 +34,7 @@ def add_to_cart(request, **kwargs):
     # filter products by id
     product = Product.objects.filter(id=kwargs.get('item_id', "")).first()
     # check if the user already owns this product
-    if product in request.user.profile.likes.all():
+    if product in request.user.profile.purchased.all():
         messages.info(request, 'You already bought likes.')
         return redirect(reverse('products:product-list'))
     # create orderItem of the selected product
@@ -141,7 +141,7 @@ def update_transaction_records(request, token):
     user_profile = get_object_or_404(Profile, user=request.user)
     # get the products from the items
     order_products = [item.product for item in order_items]
-    user_profile.likes.add(*order_products)
+    user_profile.purchased.add(*order_products)
     user_profile.save()
 
 
