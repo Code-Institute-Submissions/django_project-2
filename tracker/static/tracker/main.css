@@ -9,6 +9,10 @@
   --green:  #10e810;
 }
 
+.yellow {
+  color: var(--yellow)
+}
+
 a:hover {
   text-decoration: none;
 }
