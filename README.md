@@ -23,17 +23,31 @@ For the design of the app I decided to a bright blue colour scheme with other br
 [Wireframe](https://wireframe.cc/zqvdjD)
 
 ## Schema / Project Structure
-The django convention is to comprise a project of various apps each taking care of a unique part of a project.  
+The django convention is to comprise a project of various apps each taking care of a unique part of a project.
+
 Unicorn uses four apps..
+
 * Users
 * Tracker (Ticket system)
 * Products
 * Cart
-* HTML5
+
+Tracker is the heart of the application and contains the tickets which I have represented as posts.  Posts can be either bugs or features.  Post has a many to many relationship with users to enable the user > upvotes a post functionality.  The tracker model also has a comment class for creating comments on posts.
+
+Users have a profile class which contains extra information about the user like their stripe key.  A signal is used to automatically create a user profile when a user is created.
+
+Products contains the product table used to create the current single product which is upvoting.  For the moment this can be created in the django admin section by the superuser when the application is initialised.  Just go to root/admin and login.
+
+Cart contains the tables order, orderItem and tramsaction
 
 ## Charts & API
+The dependencies Django Rest Framework and Chart JS are required for Charts data and integration.  Both services provide very clear documenation to get up and running.  My API is set up to pull the data needed from the posts database to generate the Charts in Chart JS with the aid of Ajax and JQuery.  Currently the API is connected to the bugs and features charts, features and bug fixes progress data not yet connected.
+[Django Rest Framework](https://www.django-rest-framework.org)
+[Chart JS](https://www.chartjs.org/)
 
 ## Stripe API
+Go to the stripe homepage and gegister for an account to get your own API keys, they also provide great documenation...[Stripe](https://stripe.com/docs/api)
+
 
 ### Dependencies
 
@@ -53,51 +67,55 @@ Unicorn uses four apps..
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+See below link for instructions installing and using pipenv
+
+[Pipenv](https://pipenv.readthedocs.io/en/latest/basics/#example-pipfile-pipfile-lock)
+
+* Install Python 3.6 on your machine
+* Create Pipenv environment
+* Download this repository to your local machine
+* Make database migrations
+* Create superuser
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* Go to root of project in your virtual environment and open command line at this location
+* then run the command..
+
+*pipenv run python manage.py runserver*
+
 
 ### Testing
+Minimal python unittests were ran for this project as most of the testing was done manually on a daily basis but its something I endeavour to improve on in future.  I created a few tests in tracker/tests.py.  To run them open your pipenv virtual environment and run the command *pipenv run python manage.py test*
+
+For the front end this app was tested on many different screen sizes like laptops, tablets smartphones and is very responsive.
 
 ### Deployment
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+App is deployed to Heroku using git and github.
+Currently having problems running with DEBUG set to False so DEBUG is set to True.
 
 ## Authors
 
-Contributors names and contact info
-
 Alan Smith  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+
+[LinkedIn](https://www.linkedin.com/in/alanhbv/)
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
 * 0.1
     * Initial Release
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+Public Licence
 
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
+* [CoreyMSchafer](https://github.com/CoreyMSchafer)
+* [Brad Traversy](https://www.traversymedia.com)
+* [NetNinja](https://www.thenetninja.co.uk/)
 * [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
+* [progrAmmar](https://jsfiddle.net/3bu8fxnp/9/)
+* [JoinCFE](https://www.codingforentrepreneurs.com/)
+* [Gerardo Valencia](https://codepen.io/grardovr/pen/rJQWLN)
