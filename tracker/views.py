@@ -35,28 +35,49 @@ class ChartData(APIView):
 
         features = Post.objects.filter(ticket_type='FT')\
         .annotate(num_upvotes=Count('upvotes')).order_by('-num_upvotes')[:10]
-
-        bug_labels = [1,2,3,0,0,0,0,0,0,0]
-        bug_data = [1,2,3,4,5,6,7,8,9,10]
+        
+        bug_labels = []
+        bug_data   = []
         for bug in bugs:
             upvotes = bug.upvotes.count()
             label = bug.get_short()
-            # bug_data.append(upvotes)
-            # bug_labels.append(label)
+            bug_data.append(upvotes)
+            bug_labels.append(label)
 
-        feature_labels = [1,2,3,0,0,0,0,0,0,0]
-        feature_data = [1,2,3,4,5,6,7,8,9,10]
+
+        feature_labels = []
+        feature_data   = []
         for feat in features:
             upvotes = feat.upvotes.count()
             label = feat.get_short()
-            # feature_data.append(upvotes)
-            # feature_labels.append(label)
+            feature_data.append(upvotes)
+            feature_labels.append(label)
 
         data = {
             "bugs": {
                 "labels":  bug_labels,
                 "datasets": [{
-                  "data": bug_data
+                  "data": bug_data,
+                  "throughputs": [{
+                      "month1": [{"fixperday": 8,
+                                  "fixperweek": 16,
+                                  "fixpermonth": 19}],
+                      "month2": [{"fixperday": 8,
+                                  "fixperweek": 16,
+                                  "fixpermonth": 19}],
+                      "month3": [{"fixperday": 8,
+                                  "fixperweek": 16,
+                                  "fixpermonth": 19}],
+                      "month4": [{"fixperday": 8,
+                                  "fixperweek": 16,
+                                  "fixpermonth": 19}],
+                      "month5": [{"fixperday": 8,
+                                  "fixperweek": 16,
+                                  "fixpermonth": 19}],
+                      "month6": [{"fixperday": 8,
+                                  "fixperweek": 16,
+                                  "fixpermonth": 19}]
+                  }]
                 }]
             },
             "features": {

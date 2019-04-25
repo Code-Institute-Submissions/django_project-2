@@ -1,15 +1,16 @@
 $(document).ready(function(){
 
-  // const bugChart = document.getElementById('bugChart').getContext('2d')
-  // const featChart = document.getElementById('featChart').getContext('2d')
+  const bugChart  = document.getElementById('bugChart').getContext('2d')
+  const featChart = document.getElementById('featChart').getContext('2d')
+
   const endpoint = '/api/charts/data'
 
-  // Bug upvotes Chartt
+  // Bug upvotes Chart
   $.ajax({
     method: 'GET',
     url: endpoint,
     success: (res) => {
-      let data = res.bugs.datasets[0].data
+      let data   = res.bugs.datasets[0].data
       let labels = res.bugs.labels
 
       if (bugChart) {
@@ -49,7 +50,7 @@ $(document).ready(function(){
     method: 'GET',
     url: endpoint,
     success: (res) => {
-      let data = res.features.datasets[0].data
+      let data   = res.features.datasets[0].data
       let labels = res.features.labels
 
       if (featChart) {
@@ -84,6 +85,55 @@ $(document).ready(function(){
   })// End Ajax call graph 2
 
 
+  // Bug Fixes throughputs Chart
+  if (document.getElementById('throughputs')) {
+    const fixStats = document.getElementById('myChart').getContext('2d')
+
+    $.ajax({
+      method: 'GET',
+      url: endpoint,
+      success: (res) => {
+        // let data   = res.features.datasets[0].data
+        // let labels = res.features.labels
+
+        if (fixStats) {
+          const myChart = new Chart(fixStats, {
+              type: 'bar',
+              data: {
+                  labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+                  datasets: [{
+                      label: 'Fixes per day',
+                      data: [2, 4, 3, 5, 2, 3],
+                      backgroundColor: '#9eff47e3'
+                  },
+                  {
+                      label: 'Fixes per week',
+                      data: [5, 8, 6, 10, 4, 5],
+                      backgroundColor: '#f4f11a'
+                  },
+                  {
+                      label: 'Fixes per month',
+                      data: [27, 19, 22, 15, 21, 22],
+                      backgroundColor: '#08c4fd'
+                  }]
+              },
+              options: {
+                  scales: {
+                      yAxes: [{
+                          ticks: {
+                              beginAtZero: true
+                          }
+                      }]
+                  }
+              }
+          })
+        }
+      },
+      error: (error_data) => {
+        console.log(error_data)
+      },
+    })  // End Ajax call graph 3
+  }
 })
 // End JQuery
 
@@ -161,57 +211,3 @@ changeStatus()
 displayIcon()
 limitTicketTitle()
 upvotes()
-
-
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-
-
-
-// const featVotesChart = new Chart(featChart, {
-//   type: 'bar',
-//   data: {
-//     labels:   ['Fea 1', 'Fea 2', 'Fea 3', 'Fea 4', 'Fea 5', 'Fea 6'],
-//     datasets: [{
-//       label: 'Upvotes',
-//       data: [45, 88, 34, 67, 24, 78],
-//       backgroundColor: '#0a8cb3'
-//     }]
-//   },
-//   options: {}
-// })
