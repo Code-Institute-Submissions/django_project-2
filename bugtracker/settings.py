@@ -79,9 +79,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'bugtracker.wsgi.application'
 
 # Stripe settings
-if DEBUG:
-    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-    STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+# if DEBUG:
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 
 
 # Database
