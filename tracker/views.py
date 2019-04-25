@@ -35,7 +35,7 @@ class ChartData(APIView):
 
         features = Post.objects.filter(ticket_type='FT')\
         .annotate(num_upvotes=Count('upvotes')).order_by('-num_upvotes')[:10]
-        
+
         bug_labels = []
         bug_data   = []
         for bug in bugs:
@@ -134,7 +134,10 @@ def graphs(request):
 
 
 class PostLikeToggle(LoginRequiredMixin, RedirectView):
-    """ Class Redirect View for upvoting a Bug / Feature"""
+    """ Class Redirect View for upvoting a Bug / Feature
+    Along with the authentication check the code also checks that
+    a user has purchased an upvote plan if they they want to upvote a feature request
+    """
 
     def get_redirect_url(self, *args, **kwargs):
         post = get_object_or_404(Post, id=self.kwargs.get('pk'))
