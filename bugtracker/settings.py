@@ -76,7 +76,7 @@ TEMPLATES = [
         },
     },
 ]
-
+#
 WSGI_APPLICATION = 'bugtracker.wsgi.application'
 
 # Stripe settings
